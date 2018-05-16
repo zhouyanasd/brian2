@@ -117,6 +117,7 @@ class CythonExtensionManager(object):
                     msvcrt.locking(f.fileno(), msvcrt.LK_RLCK,
                                    os.stat(lock_file).st_size)
                 else:
+                    sys.stderr.write('Locking file for module %s\n' % module_name)
                     fcntl.flock(f, fcntl.LOCK_EX)
                 return self._load_module(module_path,
                                          define_macros=define_macros,
